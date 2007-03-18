@@ -1,0 +1,293 @@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/configure.in src/antlr-2.7.7/configure.in
+--- origsrc/antlr-2.7.7/configure.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/configure.in	2007-02-20 21:12:13.203125000 -0600
+@@ -366,16 +366,6 @@
+ ANTLR_CYGWIN=no
+ ANTLR_MINGW=no
+ 
+-AC_MSG_CHECKING(whether this is Cygwin)
+-case $host_os in
+-   *cygwin* )
+-    ANTLR_CYGWIN=yes
+-    ;;
+-  *)
+-    AC_MSG_RESULT(no)
+-  ;;
+-esac
+-
+ AC_MSG_CHECKING(whether this is MinGW)
+ case $host_os in
+    *mingw* )
+@@ -404,7 +394,11 @@
+ esac
+ 
+ ## Test whether we have cygpath
+-test -z "$CYGPATH"    && AC_PATH_PROGS(CYGPATH, cygpath$EXEEXT )
++case "${host_os}" in
++  *mingw*)
++    test -z "$CYGPATH"    && AC_PATH_PROGS(CYGPATH, cygpath$EXEEXT )
++    ;;
++esac
+ 
+ AC_SUBST([CYGPATH_M])
+ AC_SUBST([CYGPATH_W])
+@@ -650,9 +644,6 @@
+       ## Finalize BOOTCLASSPATH. Depending on platform join arguments using
+       ## a different seperator.
+       case $build_os in
+-        cygwin)
+-          sep=";"
+-          ;;
+         *)
+           sep=":"
+           ;;
+@@ -1246,7 +1237,7 @@
+ ### in their PATH in order to execute "bin/antlr.sh". To support this
+ ### I'm making sure that just the basename is used.
+ case $host_os in
+-  *cygwin* |*mingw*|*msys*)
++  *mingw*|*msys*)
+   AX_BASENAME([JAVA])
+   ;;
+ esac
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/antlr.sh.in src/antlr-2.7.7/scripts/antlr.sh.in
+--- origsrc/antlr-2.7.7/scripts/antlr.sh.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/antlr.sh.in	2007-02-20 21:26:32.093750000 -0600
+@@ -47,13 +47,6 @@
+ }
+ 
+ case @build_os@ in
+-  cygwin)
+-    ARGV="`cygpath -w ${*}`"
+-    set x ${ARGV} ; shift
+-    test -f "${antlr_jar}" && {
+-      classpath=`cygpath -m ${antlr_jar}`
+-    }
+-    ;;
+   *)
+     ARGV="${*}"
+     classpath="${antlr_jar}"
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/cpp.sh.in src/antlr-2.7.7/scripts/cpp.sh.in
+--- origsrc/antlr-2.7.7/scripts/cpp.sh.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/cpp.sh.in	2007-02-20 21:26:56.515625000 -0600
+@@ -162,13 +162,6 @@
+ 
+ set x ${Y} ; shift ; Y=""
+ 
+-## translate directories on cygwin
+-case "@build_os@" in
+-  cygwin)
+-    set x `cygpath -m ${*}` ; shift
+-    ;;
+-esac
+-
+ ## prefix each arg with CXX_OPT_INCLUDE (for instance -I)
+ while test $# -gt 0 ; do
+   y="$1" ; shift
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/csc.sh.in src/antlr-2.7.7/scripts/csc.sh.in
+--- origsrc/antlr-2.7.7/scripts/csc.sh.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/csc.sh.in	2007-02-20 21:27:32.937500000 -0600
+@@ -32,20 +32,6 @@
+ ## csc appears not to understand mixed notation.
+ 
+ case @build_os@ in
+-  cygwin)
+-    test -n "$1" && {
+-      ARGV="`cygpath -w $*`"
+-    }
+-    test -n "${srcdir}" && {
+-      srcdir="`cygpath -w ${srcdir}`"
+-    }
+-    test -n "${objdir}" && {
+-      objdir="`cygpath -w ${objdir}`"
+-    }
+-    test -n "${antlr_net}" && {
+-      antlr_net="`cygpath -w ${antlr_net}`"
+-    }
+-    ;;
+   mingw*)
+     cygpathw () {
+       test -n "$1" && {
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/cxx.sh.in src/antlr-2.7.7/scripts/cxx.sh.in
+--- origsrc/antlr-2.7.7/scripts/cxx.sh.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/cxx.sh.in	2007-02-20 21:26:10.609375000 -0600
+@@ -199,13 +199,6 @@
+ 
+ set x ${Y} ; shift ; Y=""
+ 
+-## translate directories on cygwin
+-case "@build_os@" in
+-  cygwin)
+-    set x `cygpath -m ${*}` ; shift
+-    ;;
+-esac
+-
+ ## prefix each arg with CXX_OPT_INCLUDE (for instance -I)
+ while test $# -gt 0 ; do
+   y="$1" ; shift
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/jar.sh.in src/antlr-2.7.7/scripts/jar.sh.in
+--- origsrc/antlr-2.7.7/scripts/jar.sh.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/jar.sh.in	2007-02-20 21:27:47.312500000 -0600
+@@ -18,9 +18,6 @@
+ 
+ 
+ case @build_os@ in
+-  cygwin)
+-    ARGV="`cygpath -m $*`"
+-    ;;
+   *)
+     ARGV="$*"
+     ;;
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/java.sh.in src/antlr-2.7.7/scripts/java.sh.in
+--- origsrc/antlr-2.7.7/scripts/java.sh.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/java.sh.in	2007-02-20 21:28:12.015625000 -0600
+@@ -9,12 +9,6 @@
+ ARGV="$*"
+ 
+ case @build_os@ in
+-  cygwin)
+-    test -n "${antlr_jar}" && {
+-      antlr_jar="`cygpath -m ${antlr_jar}`"
+-    }
+-    sep=";"
+-    ;;
+   macos*)
+     sep=";"
+     ;;
+@@ -37,27 +31,6 @@
+   fi
+ fi
+ 
+-## Translate all non option arguments 
+-case @build_os@ in
+-  cygwin)
+-    set x $ARGV ; shift
+-    ARGV=
+-    while test $# -gt 0 ; do
+-      case $1 in
+-        -*) 
+-          ARGV="$ARGV $1"
+-          ;;
+-        *)
+-          ARGV="$ARGV `@CYGPATH_M@ $1`"
+-          ;;
+-      esac
+-      shift
+-    done
+-    ;;
+-  *)
+-    ;;
+-esac
+-
+ 
+ 
+ ## go ahead ..
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/javac.sh.in src/antlr-2.7.7/scripts/javac.sh.in
+--- origsrc/antlr-2.7.7/scripts/javac.sh.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/javac.sh.in	2007-02-20 21:28:44.656250000 -0600
+@@ -30,9 +30,6 @@
+ classpath="@ANTLR_JAR@"
+ 
+ case @build_os@ in
+-  cygwin)
+-    sep=";"
+-    ;;
+   macos*)
+     sep=";"
+     ;;
+@@ -41,31 +38,6 @@
+     ;;
+ esac
+ 
+-## When on cygwin we translage paths into mixed notation (DOS
+-## with forward slashes).
+-case @build_os@ in
+-  cygwin)
+-    test -n "$1" && {
+-      ARGV="`cygpath -m $*`"
+-    }
+-    test -n "${srcdir}" && {
+-      srcdir="`cygpath -m ${srcdir}`"
+-    }
+-    test -n "${objdir}" && {
+-      objdir="`cygpath -m ${objdir}`"
+-    }
+-    test -n "${bootclasspath}" && {
+-      bootclasspath="`cygpath -m ${bootclasspath}`"
+-    }
+-    test -n "${classpath}" && {
+-      classpath="`cygpath -m ${classpath}`"
+-    }
+-    ;;
+-  *)
+-    ARGV="$*"
+-    ;;
+-esac
+-
+ ## Command JAVAC is precomputed but user may override.
+ if test -z "${JAVAC}" ; then
+   JAVAC="@JAVAC@"
+@@ -80,11 +52,6 @@
+   ifs_save=$IFS
+   IFS=$sep
+   for d in $CLASSPATH ; do
+-    case @build_os@ in
+-      cygwin)
+-        d=`@CYGPATH_M@ $d`
+-        ;;
+-    esac
+     classpath="$classpath$sep$d"
+   done
+   IFS=$ifs_save
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/lib.sh.in src/antlr-2.7.7/scripts/lib.sh.in
+--- origsrc/antlr-2.7.7/scripts/lib.sh.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/lib.sh.in	2007-02-20 21:28:54.703125000 -0600
+@@ -29,10 +29,6 @@
+ ##             Prepate input arguments                    ##
+ ##xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx##
+ case "@build_os@" in
+-  cygwin)
+-    LIBNAME="`cygpath -m ${LIBNAME}`"
+-    ARGV="`cygpath -m ${*}`"
+-    ;;
+   *)
+     ARGV="${*}"
+     ;;
+@@ -285,4 +281,4 @@
+   }
+ }
+ 
+-exit 0
+\ No newline at end of file
++exit 0
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/link.sh.in src/antlr-2.7.7/scripts/link.sh.in
+--- origsrc/antlr-2.7.7/scripts/link.sh.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/link.sh.in	2007-02-20 21:25:29.546875000 -0600
+@@ -19,15 +19,6 @@
+ ##             Prepate input arguments                    ##
+ ##xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx##
+ case "@build_os@" in
+-  cygwin)
+-    ARGV="`cygpath -m ${*}`"
+-    test -n "${TARGET}" && {
+-      TARGET=`cygpath -m ${TARGET}`
+-    }
+-    test -n "${LIBNAME}" && {
+-      LIBNAME="`cygpath -m ${LIBNAME}`"
+-    }
+-    ;;
+   *)
+     ARGV="${*}"
+     ;;
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/run-antlr.in src/antlr-2.7.7/scripts/run-antlr.in
+--- origsrc/antlr-2.7.7/scripts/run-antlr.in	2006-11-01 15:37:18.000000000 -0600
++++ src/antlr-2.7.7/scripts/run-antlr.in	2007-03-12 07:04:27.046875000 -0500
+@@ -52,7 +52,7 @@
+ ANTLR_JAR="@libdir@/antlr.jar"
+ 
+ case @build_os@ in
+-  cygwin|mingw|msys)
++  mingw|msys)
+     ANTLR_JAR="`cygpath -m $ANTLR_JAR`"
+     ;;
+   *)

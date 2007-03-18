@@ -1,0 +1,61 @@
+inherit emacs mono python java
+
+DESCRIPTION="ANother Tool for Language Recognition"
+HOMEPAGE="http://www.antlr.org/"
+SRC_URI="http://www.antlr.org/download/${P}.tar.gz
+		 antlr.snk"
+
+PKG_NAMES="${PN} ${PN}-devel ${PN}-python ${PN}-sharp"
+PKG_HINTS="setup devel python sharp"
+PKG_CONTENTS[0]='usr/bin/antlr usr/bin/cantlr.exe usr/share/'
+PKG_CONTENTS[1]='usr/bin/*-config usr/include/ usr/lib/lib*'
+PKG_CONTENTS[2]="${PYTHON_SITELIB#/}"
+PKG_CONTENTS[3]='usr/lib/mono/'
+
+src_compile() {
+	cd ${S}
+	cygautoreconf
+
+	cd ${B}
+
+	cygconf \
+		--enable-examples \
+		--enable-java --with-java=${JAVA} --with-javac=${JAVAC} --with-jar=${JAR} \
+		--with-bootclasspath=/usr/share/classpath/glibj.zip \
+		--enable-cxx --with-cxx=g++ \
+		--enable-python --with-python=python${PYTHON_VERSION} \
+		--enable-csharp --with-csharpc=${MCS##*/} \
+		--with-strong-assemblies=${S}/antlr.snk \
+		--with-make=make
+
+	cd ${B}
+	cygmake
+
+	cd ${B}/antlr
+	# gcj-3.4 doesn't support javax.swing
+	${GCJ} ${GCJFLAGS} --main=antlr.Tool -o ../cantlr.exe \
+		$(find antlr/ -name '*.class' ! -path 'antlr/debug/misc/*.class')
+}
+
+src_install() {
+	cd ${B}
+	USE_DESTDIR=0 cyginstall
+	dobin ${B}/antlr/cantlr.exe
+
+	dojar ${D}/usr/lib/antlr.jar
+	sed -i -e "s#/lib/antlr.jar#${JAVA_DIR#/usr}/antlr.jar#g" ${D}/usr/bin/antlr
+
+	dogac ${D}/usr/lib/antlr.astframe.dll antlr
+	dogac ${D}/usr/lib/antlr.runtime.dll antlr
+
+	dopython ${D}/usr/lib/antlr.py
+	python_optimize ${PYTHON_SITEDIR}
+	# unnecessary if antlr.py is in PYTHON_SITELIB; 
+	# see http://www.antlr.org/doc/python-runtime.html
+	rm -f ${D}/usr/sbin/pyantlr.sh
+
+	doemacs ${D}/usr/share/${P}/*.el
+
+	rm -f ${D}/usr/lib/*.{dll,jar,py}
+	rm -fr ${D}/usr/share/${P}
+}
