@@ -1,4 +1,3 @@
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/configure.in src/antlr-2.7.7/configure.in
 --- origsrc/antlr-2.7.7/configure.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/configure.in	2007-02-20 21:12:13.203125000 -0600
 @@ -366,16 +366,6 @@
@@ -50,7 +49,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
    AX_BASENAME([JAVA])
    ;;
  esac
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/antlr.sh.in src/antlr-2.7.7/scripts/antlr.sh.in
 --- origsrc/antlr-2.7.7/scripts/antlr.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/antlr.sh.in	2007-02-20 21:26:32.093750000 -0600
 @@ -47,13 +47,6 @@
@@ -67,7 +65,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
    *)
      ARGV="${*}"
      classpath="${antlr_jar}"
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/cpp.sh.in src/antlr-2.7.7/scripts/cpp.sh.in
 --- origsrc/antlr-2.7.7/scripts/cpp.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/cpp.sh.in	2007-02-20 21:26:56.515625000 -0600
 @@ -162,13 +162,6 @@
@@ -84,7 +81,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
  ## prefix each arg with CXX_OPT_INCLUDE (for instance -I)
  while test $# -gt 0 ; do
    y="$1" ; shift
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/csc.sh.in src/antlr-2.7.7/scripts/csc.sh.in
 --- origsrc/antlr-2.7.7/scripts/csc.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/csc.sh.in	2007-02-20 21:27:32.937500000 -0600
 @@ -32,20 +32,6 @@
@@ -108,7 +104,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
    mingw*)
      cygpathw () {
        test -n "$1" && {
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/cxx.sh.in src/antlr-2.7.7/scripts/cxx.sh.in
 --- origsrc/antlr-2.7.7/scripts/cxx.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/cxx.sh.in	2007-02-20 21:26:10.609375000 -0600
 @@ -199,13 +199,6 @@
@@ -125,7 +120,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
  ## prefix each arg with CXX_OPT_INCLUDE (for instance -I)
  while test $# -gt 0 ; do
    y="$1" ; shift
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/jar.sh.in src/antlr-2.7.7/scripts/jar.sh.in
 --- origsrc/antlr-2.7.7/scripts/jar.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/jar.sh.in	2007-02-20 21:27:47.312500000 -0600
 @@ -18,9 +18,6 @@
@@ -138,7 +132,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
    *)
      ARGV="$*"
      ;;
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/java.sh.in src/antlr-2.7.7/scripts/java.sh.in
 --- origsrc/antlr-2.7.7/scripts/java.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/java.sh.in	2007-02-20 21:28:12.015625000 -0600
 @@ -9,12 +9,6 @@
@@ -182,7 +175,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
  
  
  ## go ahead ..
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/javac.sh.in src/antlr-2.7.7/scripts/javac.sh.in
 --- origsrc/antlr-2.7.7/scripts/javac.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/javac.sh.in	2007-02-20 21:28:44.656250000 -0600
 @@ -30,9 +30,6 @@
@@ -239,7 +231,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
      classpath="$classpath$sep$d"
    done
    IFS=$ifs_save
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/lib.sh.in src/antlr-2.7.7/scripts/lib.sh.in
 --- origsrc/antlr-2.7.7/scripts/lib.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/lib.sh.in	2007-02-20 21:28:54.703125000 -0600
 @@ -29,10 +29,6 @@
@@ -260,7 +251,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
 -exit 0
 \ No newline at end of file
 +exit 0
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/link.sh.in src/antlr-2.7.7/scripts/link.sh.in
 --- origsrc/antlr-2.7.7/scripts/link.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/link.sh.in	2007-02-20 21:25:29.546875000 -0600
 @@ -19,15 +19,6 @@
@@ -279,7 +269,6 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
    *)
      ARGV="${*}"
      ;;
-diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x '*.java' origsrc/antlr-2.7.7/scripts/run-antlr.in src/antlr-2.7.7/scripts/run-antlr.in
 --- origsrc/antlr-2.7.7/scripts/run-antlr.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/run-antlr.in	2007-03-12 07:04:27.046875000 -0500
 @@ -52,7 +52,7 @@
