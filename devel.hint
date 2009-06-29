@@ -1,5 +1,5 @@
 category: Devel
-requires: cygwin antlr gcc-g++
+requires: antlr gcc-g++
 external-source: antlr
 sdesc: "ANother Tool for Language Recognition (C++)"
 ldesc: "ANother Tool for Language Recognition, (formerly PCCTS) is a 

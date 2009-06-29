@@ -1,5 +1,5 @@
 category: Devel Java
-requires: cygwin classpath jamvm libiconv2 zlib
+requires: classpath jamvm libiconv2 zlib
 sdesc: "ANother Tool for Language Recognition (runtime)"
 ldesc: "ANother Tool for Language Recognition, (formerly PCCTS) is a 
 language tool that provides a framework for constructing recognizers, 
