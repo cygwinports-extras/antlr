@@ -187,13 +187,13 @@
    macos*)
      sep=";"
      ;;
-@@ -41,31 +38,6 @@
+@@ -41,26 +38,7 @@
      ;;
  esac
  
 -## When on cygwin we translage paths into mixed notation (DOS
 -## with forward slashes).
--case @build_os@ in
+ case @build_os@ in
 -  cygwin)
 -    test -n "$1" && {
 -      ARGV="`cygpath -m $*`"
@@ -211,14 +211,9 @@
 -      classpath="`cygpath -m ${classpath}`"
 -    }
 -    ;;
--  *)
--    ARGV="$*"
--    ;;
--esac
--
- ## Command JAVAC is precomputed but user may override.
- if test -z "${JAVAC}" ; then
-   JAVAC="@JAVAC@"
+   *)
+     ARGV="$*"
+     ;;
 @@ -80,11 +52,6 @@
    ifs_save=$IFS
    IFS=$sep
@@ -244,13 +239,6 @@
    *)
      ARGV="${*}"
      ;;
-@@ -285,4 +281,4 @@
-   }
- }
- 
--exit 0
-\ No newline at end of file
-+exit 0
 --- origsrc/antlr-2.7.7/scripts/link.sh.in	2006-11-01 15:37:18.000000000 -0600
 +++ src/antlr-2.7.7/scripts/link.sh.in	2007-02-20 21:25:29.546875000 -0600
 @@ -19,15 +19,6 @@

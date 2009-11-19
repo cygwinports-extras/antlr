@@ -1,7 +1,6 @@
-category: Devel
-requires: antlr gcc-g++
-external-source: antlr
-sdesc: "ANother Tool for Language Recognition (C++)"
+category: Devel Java
+requires: jamvm
+sdesc: "ANother Tool for Language Recognition (runtime)"
 ldesc: "ANother Tool for Language Recognition, (formerly PCCTS) is a 
 language tool that provides a framework for constructing recognizers, 
 compilers, and translators from grammatical descriptions containing 

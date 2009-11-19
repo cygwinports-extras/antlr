@@ -1,0 +1,72 @@
+inherit emacs python java # mono
+
+DESCRIPTION="ANother Tool for Language Recognition"
+HOMEPAGE="http://www.antlr2.org/"
+SRC_URI="http://www.antlr2.org/download/${P}.tar.gz"
+
+PATCH_URI="
+	mirror://portage/dev-java/${PN}/files/2.7.7-gcc-4.3.patch
+	mirror://portage/dev-java/${PN}/files/2.7.7-gcc-4.4.patch
+	mirror://portage/dev-java/${PN}/files/2.7.7-makefixes.patch
+	2.7.7-cygwin.patch
+"
+
+PKG_NAMES="antlr libantlr-devel python-antlr" # cantlr ${PN}-sharp"
+antlr_CONTENTS='usr/bin/antlr usr/share/'
+#cantlr_CONTENTS="usr/bin/cantlr.exe"
+libantlr_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib*'
+python_antlr_CONTENTS="${PYTHON_SITELIB#/}"
+# mono_antlr_CONTENTS='usr/lib/mono/'
+
+DIFF_EXCLUDES="Version.java"
+
+src_compile() {
+	cd ${S}
+	cygautoreconf
+
+	cd ${B}
+
+	cygconf \
+		--enable-examples \
+		--enable-java --with-java=${JAVA} --with-javac=${JAVAC} --with-jar=${JAR} \
+		--enable-cxx --with-cxx=${CXX} \
+		--enable-python --with-python=${PYTHON} \
+		--disable-csharp \
+		--with-make=make
+
+	cd ${B}
+	cygmake
+
+#	cd ${B}/antlr
+#	${GCJ} ${GCJFLAGS} --main=antlr.Tool -o cantlr.exe antlr.jar
+}
+
+src_install() {
+	cd ${B}
+	USE_DESTDIR=0 cyginstall antlr_doc_DIR=${D}/usr/share/doc/${PN}
+
+#	dobin ${B}/antlr/cantlr.exe
+
+	dojar ${D}/usr/lib/antlr.jar
+	sed -i -e "s#/lib/antlr.jar#${JAVA_DIR#/usr}/antlr.jar#g" ${D}/usr/bin/antlr
+
+	if inherited mono
+	then
+		dogac ${D}/usr/lib/antlr.astframe.dll antlr
+		dogac ${D}/usr/lib/antlr.runtime.dll antlr
+	fi
+
+	if inherited python
+	then
+		dopython ${D}/usr/lib/antlr.py
+		python_optimize
+		# unnecessary if antlr.py is in PYTHON_SITELIB;
+		# see http://www.antlr2.org/doc/python-runtime.html
+		rm -f ${D}/usr/sbin/pyantlr.sh
+	fi
+
+	doemacs ${D}/usr/share/${P}/*.el
+
+	rm -f ${D}/usr/lib/*.{dll,jar,py}
+	rm -fr ${D}/usr/share/${P}
+}
