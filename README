@@ -7,29 +7,20 @@ or Python actions. ANTLR provides excellent support for tree
 construction, tree walking, and translation.
 
 Runtime requirements:
-  cygwin-1.5.24-2
-  classpath-0.93-1
-  jamvm-1.4.5-1
-(cantlr)
-  libiconv2-1.11-1
-  zlib-1.2.3-2
-(antlr-python)
-  python-2.4.3-1
-(antlr-sharp)
-  mono-1.2.2.1-1
+  cygwin-1.7.0-67
+  jamvm-1.5.3-1
+  python-2.5.4-10
 
 Build requirements:
 (besides corresponding -devel packages)
-  cygwin-1.5.24-2
-  binutils-20060817-1
-  cygport-0.2.7-1
-  fastjar-0.94-1
-  gawk-3.1.5-4
-  gcc-core-3.4.4-3
-  gcc-g++-3.4.4-3
-  gcc-java-3.4.4-3
-  jikes-1.22-4
-  make-3.81-1
+  binutils-2.19.51-1
+  cygport-0.9.10-1
+  ecj-3.3.2-1
+  fastjar-0.98-1
+  gawk-3.1.7-1
+  gcc4-core-4.3.4-1
+  gcc4-g++-4.3.4-1
+  make-3.81-2
   sed-4.1.5-2
 
 Canonical website:
@@ -50,122 +41,16 @@ Build instructions:
 This will create:
   /usr/src/antlr-2.7.7-X-src.tar.bz2
   /usr/src/antlr-2.7.7-X.tar.bz2
-  /usr/src/antlr-devel-2.7.7-X.tar.bz2
-  /usr/src/antlr-python-2.7.7-X.tar.bz2
-  /usr/src/antlr-sharp-2.7.7-X.tar.bz2
+  /usr/src/java-antlr-2.7.7-X.tar.bz2
+  /usr/src/libantlr-devel-2.7.7-X.tar.bz2
+  /usr/src/python-antlr-2.7.7-X.tar.bz2
 
 -------------------------------------------
 
-Files included in the binary package:
-
-  /usr/bin/antlr
-  /usr/bin/cantlr.exe
-  /usr/share/doc/Cygwin/antlr-2.7.7.README
-  /usr/share/doc/antlr-2.7.7/Changes.txt
-  /usr/share/doc/antlr-2.7.7/INSTALL.txt
-  /usr/share/doc/antlr-2.7.7/LICENSE.txt
-  /usr/share/doc/antlr-2.7.7/README.txt
-  /usr/share/doc/antlr-2.7.7/closure.gif
-  /usr/share/doc/antlr-2.7.7/cpp-runtime.html
-  /usr/share/doc/antlr-2.7.7/csharp-runtime.html
-  /usr/share/doc/antlr-2.7.7/err.html
-  /usr/share/doc/antlr-2.7.7/glossary.html
-  /usr/share/doc/antlr-2.7.7/hidden.stream.gif
-  /usr/share/doc/antlr-2.7.7/index.html
-  /usr/share/doc/antlr-2.7.7/inheritance.html
-  /usr/share/doc/antlr-2.7.7/j-guru-blue.jpg
-  /usr/share/doc/antlr-2.7.7/jguru-logo.gif
-  /usr/share/doc/antlr-2.7.7/lexer.html
-  /usr/share/doc/antlr-2.7.7/lexer.to.parser.tokens.gif
-  /usr/share/doc/antlr-2.7.7/logo.gif
-  /usr/share/doc/antlr-2.7.7/metalang.html
-  /usr/share/doc/antlr-2.7.7/optional.gif
-  /usr/share/doc/antlr-2.7.7/options.html
-  /usr/share/doc/antlr-2.7.7/posclosure.gif
-  /usr/share/doc/antlr-2.7.7/python-runtime.html
-  /usr/share/doc/antlr-2.7.7/runtime.html
-  /usr/share/doc/antlr-2.7.7/sor.html
-  /usr/share/doc/antlr-2.7.7/stream.perspectives.gif
-  /usr/share/doc/antlr-2.7.7/stream.selector.gif
-  /usr/share/doc/antlr-2.7.7/stream.splitter.gif
-  /usr/share/doc/antlr-2.7.7/streams.html
-  /usr/share/doc/antlr-2.7.7/subrule.gif
-  /usr/share/doc/antlr-2.7.7/trees.html
-  /usr/share/doc/antlr-2.7.7/vocab.html
-  /usr/share/emacs/site-lisp/antlr-mode.el
-  /usr/share/java/antlr.jar
-
-(antlr-python)
-  /usr/lib/python2.4/site-packages/antlr.py
-  /usr/lib/python2.4/site-packages/antlr.pyc
-  /usr/lib/python2.4/site-packages/antlr.pyo
-
-(antlr-sharp)
-  /usr/lib/mono/antlr/antlr.astframe.dll
-  /usr/lib/mono/antlr/antlr.runtime.dll
-  /usr/lib/mono/gac/antlr.astframe/2.7.7.1__d09d3e3c9469948b/antlr.astframe.dll
-  /usr/lib/mono/gac/antlr.runtime/2.7.7.1__d09d3e3c9469948b/antlr.runtime.dll
-
-(antlr-devel)
-  /usr/bin/antlr-config
-  /usr/include/antlr/ANTLRException.hpp
-  /usr/include/antlr/ANTLRUtil.hpp
-  /usr/include/antlr/AST.hpp
-  /usr/include/antlr/ASTArray.hpp
-  /usr/include/antlr/ASTFactory.hpp
-  /usr/include/antlr/ASTNULLType.hpp
-  /usr/include/antlr/ASTPair.hpp
-  /usr/include/antlr/ASTRefCount.hpp
-  /usr/include/antlr/BaseAST.hpp
-  /usr/include/antlr/BitSet.hpp
-  /usr/include/antlr/CharBuffer.hpp
-  /usr/include/antlr/CharInputBuffer.hpp
-  /usr/include/antlr/CharScanner.hpp
-  /usr/include/antlr/CharStreamException.hpp
-  /usr/include/antlr/CharStreamIOException.hpp
-  /usr/include/antlr/CircularQueue.hpp
-  /usr/include/antlr/CommonAST.hpp
-  /usr/include/antlr/CommonASTWithHiddenTokens.hpp
-  /usr/include/antlr/CommonHiddenStreamToken.hpp
-  /usr/include/antlr/CommonToken.hpp
-  /usr/include/antlr/IOException.hpp
-  /usr/include/antlr/InputBuffer.hpp
-  /usr/include/antlr/LLkParser.hpp
-  /usr/include/antlr/LexerSharedInputState.hpp
-  /usr/include/antlr/MismatchedCharException.hpp
-  /usr/include/antlr/MismatchedTokenException.hpp
-  /usr/include/antlr/NoViableAltException.hpp
-  /usr/include/antlr/NoViableAltForCharException.hpp
-  /usr/include/antlr/Parser.hpp
-  /usr/include/antlr/ParserSharedInputState.hpp
-  /usr/include/antlr/RecognitionException.hpp
-  /usr/include/antlr/RefCount.hpp
-  /usr/include/antlr/SemanticException.hpp
-  /usr/include/antlr/String.hpp
-  /usr/include/antlr/Token.hpp
-  /usr/include/antlr/TokenBuffer.hpp
-  /usr/include/antlr/TokenRefCount.hpp
-  /usr/include/antlr/TokenStream.hpp
-  /usr/include/antlr/TokenStreamBasicFilter.hpp
-  /usr/include/antlr/TokenStreamException.hpp
-  /usr/include/antlr/TokenStreamHiddenTokenFilter.hpp
-  /usr/include/antlr/TokenStreamIOException.hpp
-  /usr/include/antlr/TokenStreamRecognitionException.hpp
-  /usr/include/antlr/TokenStreamRetryException.hpp
-  /usr/include/antlr/TokenStreamRewriteEngine.hpp
-  /usr/include/antlr/TokenStreamSelector.hpp
-  /usr/include/antlr/TokenWithIndex.hpp
-  /usr/include/antlr/TreeParser.hpp
-  /usr/include/antlr/TreeParserSharedInputState.hpp
-  /usr/include/antlr/config.hpp
-  /usr/lib/libantlr.a
-
-------------------
-
 Port Notes:
 
------ version 2.7.7-1 -----
-Initial release for Cygwin.
+----- version 2.7.7-2 -----
+Initial release for Cygwin 1.7.
 
 
 Cygwin port maintained by:

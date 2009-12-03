@@ -11,9 +11,9 @@ PATCH_URI="
 	2.7.7-cygwin.patch
 "
 
-PKG_NAMES="antlr libantlr-devel python-antlr" # cantlr ${PN}-sharp"
-antlr_CONTENTS='usr/bin/antlr usr/share/'
-#cantlr_CONTENTS="usr/bin/cantlr.exe"
+PKG_NAMES="antlr libantlr-devel java-antlr python-antlr" # mono-antlr"
+antlr_CONTENTS='usr/bin/antlr usr/share/doc/ usr/share/emacs/'
+java_antlr_CONTENTS="${JAVA_DIR#/} ${JAVADOC_DIR#/}"
 libantlr_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib*'
 python_antlr_CONTENTS="${PYTHON_SITELIB#/}"
 # mono_antlr_CONTENTS='usr/lib/mono/'
@@ -25,7 +25,6 @@ src_compile() {
 	cygautoreconf
 
 	cd ${B}
-
 	cygconf \
 		--enable-examples \
 		--enable-java --with-java=${JAVA} --with-javac=${JAVAC} --with-jar=${JAR} \
@@ -34,18 +33,18 @@ src_compile() {
 		--disable-csharp \
 		--with-make=make
 
-	cd ${B}
 	cygmake
-
-#	cd ${B}/antlr
-#	${GCJ} ${GCJFLAGS} --main=antlr.Tool -o cantlr.exe antlr.jar
+	cygjavadoc -d doc/api $(find ${B}/antlr ${S}/antlr -name '*.java')
 }
 
 src_install() {
 	cd ${B}
-	USE_DESTDIR=0 cyginstall antlr_doc_DIR=${D}/usr/share/doc/${PN}
+	USE_DESTDIR=0
+	cyginstall \
+		docdir=${D}/usr/share/doc/${PN} \
+		antlr_doc_DIR=${D}/usr/share/doc/${PN}/html
 
-#	dobin ${B}/antlr/cantlr.exe
+	dojavadoc doc/api/
 
 	dojar ${D}/usr/lib/antlr.jar
 	sed -i -e "s#/lib/antlr.jar#${JAVA_DIR#/usr}/antlr.jar#g" ${D}/usr/bin/antlr
@@ -66,6 +65,7 @@ src_install() {
 	fi
 
 	doemacs ${D}/usr/share/${P}/*.el
+	emacs_compile
 
 	rm -f ${D}/usr/lib/*.{dll,jar,py}
 	rm -fr ${D}/usr/share/${P}

@@ -1,6 +1,6 @@
-category: Devel Java Python
-requires: jamvm java-antlr
-sdesc: "ANother Tool for Language Recognition (compiler)"
+category: Java
+external-source: antlr
+sdesc: "ANother Tool for Language Recognition (Java runtime)"
 ldesc: "ANother Tool for Language Recognition, (formerly PCCTS) is a 
 language tool that provides a framework for constructing recognizers, 
 compilers, and translators from grammatical descriptions containing 
