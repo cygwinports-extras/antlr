@@ -1,4 +1,4 @@
-inherit emacs python java # mono
+inherit emacs python java mono
 
 DESCRIPTION="ANother Tool for Language Recognition"
 HOMEPAGE="http://www.antlr2.org/"
@@ -11,12 +11,12 @@ PATCH_URI="
 	2.7.7-cygwin.patch
 "
 
-PKG_NAMES="antlr libantlr-devel java-antlr python-antlr" # mono-antlr"
+PKG_NAMES="antlr libantlr-devel java-antlr python-antlr mono-antlr"
 antlr_CONTENTS='usr/bin/antlr usr/share/doc/ usr/share/emacs/'
 java_antlr_CONTENTS="${JAVA_DIR#/} ${JAVADOC_DIR#/}"
 libantlr_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib*'
 python_antlr_CONTENTS="${PYTHON_SITELIB#/}"
-# mono_antlr_CONTENTS='usr/lib/mono/'
+mono_antlr_CONTENTS='usr/lib/mono/'
 
 DIFF_EXCLUDES="Version.java"
 
@@ -30,7 +30,7 @@ src_compile() {
 		--enable-java --with-java=${JAVA} --with-javac=${JAVAC} --with-jar=${JAR} \
 		--enable-cxx --with-cxx=${CXX} \
 		--enable-python --with-python=${PYTHON} \
-		--disable-csharp \
+		--enable-csharp --with-strong-assemblies=${MONO_SNK} \
 		--with-make=make
 
 	cygmake
