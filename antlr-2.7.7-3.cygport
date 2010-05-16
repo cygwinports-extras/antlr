@@ -51,8 +51,8 @@ src_install() {
 
 	if inherited mono
 	then
-		dogac ${D}/usr/lib/antlr.astframe.dll antlr
-		dogac ${D}/usr/lib/antlr.runtime.dll antlr
+		gacinto antlr
+		dogac ${D}/usr/lib/antlr.astframe.dll ${D}/usr/lib/antlr.runtime.dll
 	fi
 
 	if inherited python
