@@ -1,6 +1,15 @@
 inherit emacs python java mono
 
-DESCRIPTION="ANother Tool for Language Recognition"
+NAME="antlr"
+VERSION=2.7.7
+RELEASE=4
+CATEGORY="Devel Java Python"
+SUMMARY="ANother Tool for Language Recognition"
+DESCRIPTION="ANother Tool for Language Recognition, (formerly PCCTS) is a
+language tool that provides a framework for constructing recognizers, compilers,
+and translators from grammatical descriptions containing Java, C#, C++, or
+Python actions. ANTLR provides excellent support for tree construction, tree
+walking, and translation."
 HOMEPAGE="http://www.antlr2.org/"
 SRC_URI="http://www.antlr2.org/download/${P}.tar.gz"
 
@@ -12,10 +21,18 @@ PATCH_URI="
 "
 
 PKG_NAMES="antlr libantlr-devel java-antlr python-antlr mono-antlr"
+antlr_REQUIRES="jamvm java-antlr libantlr-devel python-antlr"
 antlr_CONTENTS='usr/bin/antlr usr/share/doc/ usr/share/emacs/'
+java_antlr_SUMMARY="${SUMMARY} (Java runtime support)"
 java_antlr_CONTENTS="${JAVA_DIR#/} ${JAVADOC_DIR#/}"
+libantlr_devel_CATEGORY="Devel"
+libantlr_devel_SUMMARY="${SUMMARY} (C/C++ runtime support)"
 libantlr_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib*'
+python_antlr_CATEGORY="Python"
+python_antlr_SUMMARY="${SUMMARY} (Python runtime support)"
 python_antlr_CONTENTS="${PYTHON_SITELIB#/}"
+mono_antlr_CATEGORY="DotNET"
+mono_antlr_SUMMARY="${SUMMARY} (C# runtime support)"
 mono_antlr_CONTENTS='usr/lib/mono/'
 
 DIFF_EXCLUDES="Version.java"
