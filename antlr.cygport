@@ -1,8 +1,8 @@
-inherit emacs python java mono
+inherit emacs python java # mono
 
 NAME="antlr"
 VERSION=2.7.7
-RELEASE=4
+RELEASE=5
 CATEGORY="Devel Java Python"
 SUMMARY="ANother Tool for Language Recognition"
 DESCRIPTION="ANother Tool for Language Recognition, (formerly PCCTS) is a
@@ -20,11 +20,13 @@ PATCH_URI="
 	2.7.7-cygwin.patch
 "
 
-PKG_NAMES="antlr libantlr-devel java-antlr python-antlr mono-antlr"
+PKG_NAMES="antlr libantlr-devel java-antlr javadoc-antlr python-antlr" # mono-antlr"
 antlr_REQUIRES="jamvm java-antlr libantlr-devel python-antlr"
 antlr_CONTENTS='usr/bin/antlr usr/share/doc/ usr/share/emacs/'
 java_antlr_SUMMARY="${SUMMARY} (Java runtime support)"
-java_antlr_CONTENTS="${JAVA_DIR#/} ${JAVADOC_DIR#/}"
+java_antlr_CONTENTS=${JAVA_DIR#/}
+javadoc_antlr_SUMMARY="${SUMMARY} (Java API documentation)"
+javadoc_antlr_CONTENTS=${JAVADOC_DIR#/}
 libantlr_devel_CATEGORY="Devel"
 libantlr_devel_SUMMARY="${SUMMARY} (C/C++ runtime support)"
 libantlr_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib*'
@@ -47,7 +49,7 @@ src_compile() {
 		--enable-java --with-java=${JAVA} --with-javac=${JAVAC} --with-jar=${JAR} \
 		--enable-cxx --with-cxx=${CXX} \
 		--enable-python --with-python=${PYTHON} \
-		--enable-csharp --with-strong-assemblies=${MONO_SNK} \
+		--disable-csharp --with-strong-assemblies=${MONO_SNK} \
 		--with-make=make
 
 	cygmake
